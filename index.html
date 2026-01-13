@@ -138,7 +138,8 @@
 </footer>
 
 <script>
-  const supabase = supabase.createClient(
+  const supabaseClient =
+window.supabase.createClient(    
     'https://ymshwdaxmzmiriidilbu.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inltc2h3ZGF4bXptaXJpaWRpbGJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyOTU1MzUsImV4cCI6MjA4Mzg3MTUzNX0.jDjKh5R_79dQt2wDmzxPzbvo-89d3K67GF3-_cTvgSk'
   );
@@ -176,4 +177,5 @@
 </script>
 
 </body>
+
 </html>
