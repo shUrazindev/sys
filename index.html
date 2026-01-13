@@ -185,7 +185,7 @@ window.supabase.createClient(
     e.preventDefault();
 
     const { error } = await supabaseClient
-      .from('venda_refeicoes')
+      .from('vendas_refeicoes')
       .insert({
         cliente: c_cliente.value,
         quantidade: c_quantidade.value,
@@ -204,5 +204,6 @@ window.supabase.createClient(
 </body>
 
 </html>
+
 
 
