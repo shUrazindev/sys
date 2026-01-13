@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle de Refeições & Visitantes</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    header {
+      background: linear-gradient(135deg, #166534, #22c55e);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #cbd5f5;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #16a34a;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #15803d;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🍽️ Sistema de Controle</h1>
+  <p>Visitantes, Refeições Entre-Safra e Vendas</p>
+</header>
+
+<main>
+
+  <div class="card">
+    <h2>👥 Visitantes / Reuniões</h2>
+    <form id="visitantesForm">
+      <input placeholder="Nome do visitante" id="v_nome" required>
+      <input placeholder="Motivo da visita" id="v_motivo">
+      <button>Salvar visita</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>🌾 Refeições Entre-Safra</h2>
+    <form id="refeicoesForm">
+      <select id="r_responsavel">
+        <option value="Agrícola">Agrícola</option>
+        <option value="Associação">Associação</option>
+        <option value="Indústria">Indústria</option>
+        <option value="Sr. Antônio">Sr. Antônio</option>
+      </select>
+      <input type="number" placeholder="Quantidade de refeições" id="r_quantidade" required>
+      <button>Registrar refeição</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>💰 Venda de Refeições</h2>
+    <form id="vendaForm">
+      <input placeholder="Cliente" id="c_cliente" required>
+      <input type="number" placeholder="Quantidade" id="c_quantidade" required>
+      <input type="number" step="0.01" placeholder="Valor total (R$)" id="c_valor">
+      <button>Registrar venda</button>
+    </form>
+  </div>
+
+</main>
+
+<footer>
+  Sistema integrado com Supabase • Hospedado no GitHub Pages
+</footer>
+
+<script>
+  const supabase = supabase.createClient(
+    'https://ymshwdaxmzmiriidilbu.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inltc2h3ZGF4bXptaXJpaWRpbGJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyOTU1MzUsImV4cCI6MjA4Mzg3MTUzNX0.jDjKh5R_79dQt2wDmzxPzbvo-89d3K67GF3-_cTvgSk'
+  );
+
+  visitantesForm.onsubmit = async (e) => {
+    e.preventDefault();
+    await supabase.from('visitantes_reunioes').insert({
+      nome: v_nome.value,
+      motivo: v_motivo.value
+    });
+    alert('Visitante salvo!');
+    e.target.reset();
+  };
+
+  refeicoesForm.onsubmit = async (e) => {
+    e.preventDefault();
+    await supabase.from('refeicoes_entre_safra').insert({
+      responsavel: r_responsavel.value,
+      quantidade: r_quantidade.value
+    });
+    alert('Refeição registrada!');
+    e.target.reset();
+  };
+
+  vendaForm.onsubmit = async (e) => {
+    e.preventDefault();
+    await supabase.from('venda_refeicoes').insert({
+      cliente: c_cliente.value,
+      quantidade: c_quantidade.value,
+      valor: c_valor.value
+    });
+    alert('Venda registrada!');
+    e.target.reset();
+  };
+</script>
+
+</body>
+</html>
