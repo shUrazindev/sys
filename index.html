@@ -146,36 +146,62 @@ window.supabase.createClient(
 
   visitantesForm.onsubmit = async (e) => {
     e.preventDefault();
-    await supabase.from('visitantes_reunioes').insert({
-      nome: v_nome.value,
-      motivo: v_motivo.value
-    });
-    alert('Visitante salvo!');
-    e.target.reset();
+
+    const { error } = await supabaseClient
+      .from('visitantes_reunioes')
+      .insert({
+        nome: v_nome.value,
+        motivo: v_motivo.value
+      });
+
+    if (error) {
+      console.error(error);
+      alert('ERRO: ' + error.message);
+    } else {
+      alert('Salvo com sucesso!');
+      e.target.reset();
+    }
   };
 
   refeicoesForm.onsubmit = async (e) => {
     e.preventDefault();
-    await supabase.from('refeicoes_entre_safra').insert({
-      responsavel: r_responsavel.value,
-      quantidade: r_quantidade.value
-    });
-    alert('Refeição registrada!');
-    e.target.reset();
+
+    const { error } = await supabaseClient
+      .from('refeicoes_entre_safra')
+      .insert({
+        responsavel: r_responsavel.value,
+        quantidade: r_quantidade.value
+      });
+
+    if (error) {
+      alert('ERRO: ' + error.message);
+    } else {
+      alert('Refeição registrada!');
+      e.target.reset();
+    }
   };
 
   vendaForm.onsubmit = async (e) => {
     e.preventDefault();
-    await supabase.from('venda_refeicoes').insert({
-      cliente: c_cliente.value,
-      quantidade: c_quantidade.value,
-      valor: c_valor.value
-    });
-    alert('Venda registrada!');
-    e.target.reset();
+
+    const { error } = await supabaseClient
+      .from('venda_refeicoes')
+      .insert({
+        cliente: c_cliente.value,
+        quantidade: c_quantidade.value,
+        valor: c_valor.value
+      });
+
+    if (error) {
+      alert('ERRO: ' + error.message);
+    } else {
+      alert('Venda registrada!');
+      e.target.reset();
+    }
   };
 </script>
 
 </body>
 
 </html>
+
