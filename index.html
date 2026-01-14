@@ -18,19 +18,11 @@
       color: #0f172a;
     }
 
-    header.topo {
-      position: relative
+     header {
       background: linear-gradient(135deg, #166534, #22c55e);
       color: white;
-      padding: 40px;
-    }
-
-    .logo-faixa {
-      position: absolute;
-      top: 15px;
-      left: 20px;
-      height: 60px;
-      width: auto;
+      padding: 30px;
+      text-align: center;
     }
 
     main {
@@ -99,13 +91,9 @@
 
 <body>
   
-<header class="topo">
-  <img src="assets/logo.png" alt="Logo" class="logo-faixa">
-
-  <div class="titulo">
-    <h1>Sistema de Controle</h1>
-    <p>Visitantes, Refeições Entre-Safra e Vendas</p>
-  </div>
+<header>
+  <h1>Sistema de Controle</h1>
+  <p>Visitantes, Refeições Entre-Safra e Vendas</p>
 </header>
 
 <main>
@@ -216,6 +204,7 @@ window.supabase.createClient(
 </body>
 
 </html>
+
 
 
 
