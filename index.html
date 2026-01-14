@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+<head class="topo">
+  <img src="assets/logo.png" alt="Logo" class="logo-header">
+
+  <div class="titulo">
   <meta charset="UTF-8">
   <title>Sistema de Controle</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -18,11 +21,29 @@
       color: #0f172a;
     }
 
-    header {
+    header.topo {
+      display: flex;
+      align-items: center;
+      gap: 20px;
       background: linear-gradient(135deg, #166534, #22c55e);
       color: white;
-      padding: 30px;
-      text-align: center;
+      padding: 25px 40px;
+    }
+
+    .logo-header {
+      height: 60px;
+      width: auto;
+    }
+
+    header.topo h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header.topo p {
+      margin: 4px 0 0;
+      font-size: 14px;
+      opacity: 0.9;
     }
 
     main {
@@ -204,6 +225,7 @@ window.supabase.createClient(
 </body>
 
 </html>
+
 
 
 
